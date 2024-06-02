@@ -22,6 +22,9 @@ menu() {
     echo "8. Menampilkan penggunaan disk"
     echo "9. Menampilkan penggunaan memori"
     echo "10. Menampilkan informasi CPU"
+    echo "11. Menampilkan daftar proses yang sedang berjalan di sistem"
+    echo "12. Menghitung uptime sistem."
+    echo "13. Memeriksa update sistem."
     echo ""
     echo "0. Keluar"
 }
@@ -109,6 +112,24 @@ menampilkan_cpu_info() {
     echo ""
 }
 
+daftar_proses_berjalan(){
+    echo "Daftar proses yang berjalan: "
+    ps aux
+    echo ""
+}
+
+menghitung_uptime_sistem(){
+    echo "Uptime sistem:"
+    cat /proc/uptime | awk '{print $1/3600 " jam"}'
+    echo ""
+}
+
+memeriksa_update_sistem(){
+    echo "Memeriksa pembaruan sistem..."
+    sudo apt update
+    sudo apt list --upgradable
+    echo ""
+}
 
 echo "Selamat Datang di Aplikasi File Master"
 echo "======================================"
@@ -130,6 +151,9 @@ while true; do
         8) menampilkan_penggunaan_disk ;;
         9) menampilkan_penggunaan_memori ;;
         10) menampilkan_cpu_info ;;
+        11) daftar_proses_berjalan ;;
+        12) menghitung_uptime_sistem ;;
+        13) memeriksa_update_sistem ;;
         0) break ;;
         *) echo "Pilihan tidak valid!" ;;
     esac
